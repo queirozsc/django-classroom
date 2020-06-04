@@ -64,7 +64,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'https://www.googleapis.com/auth/classroom.profile.emails',
         ],
         'AUTH_PARAMS': {
-            'access_type': 'online',
+            'access_type': 'offline',
         }
     }
 }
