@@ -1,0 +1,41 @@
+{% extends 'navbar.html' %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <table class="table is-striped">
+        <tbody>
+            <th>#</th>
+            <th>Turma</th>
+            <th>Série</th>
+            <th>Link</th>
+            <th>Email</th>
+            <th>Email</th>
+            <th>Atualizada há</th>
+            <th>Performance</th>
+            {% for course in courses %}
+            <tr class="{% cycle 'table-striped-row-even-background-color' '' %}">
+                <td><figure class="image is-32x32"> <img src="{{ course.avatar_url }}" class="is-rounded" alt="{{ course.mnemonic }}"></figure></td>
+                <td>{{ course.name }}</td>
+                <td>{{ course.section }}</td>
+                <td><a href="{{ course.link }}" alt="link turma" target="_blank"><span class="icon"><i class="fas fa-external-link-alt"></i></span>Acessar</a></td>
+                <td><a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ course.teachers_email }}" alt="email professores" target="_blank"><span class="icon"><i class="fas fa-envelope-open-text"></i></span>Professores</a></td>
+                <td><a href="https://mail.google.com/mail/?view=cm&fs=1&to={{ course.course_email }}" alt="email turma" target="_blank"><span class="icon"><i class="fas fa-mail-bulk"></i></span>Alunos</a></td>
+                <td>{{ course.updated_at|timesince }}</td>
+                <td><progress class="progress is-info" value="40" max="100">{{ forloop.counter}} %</progress></td>
+
+
+<!--                    name = models.CharField('Turma', max_length=100)-->
+<!--    section = models.CharField('Séries', max_length=100)-->
+<!--    state = models.CharField('Situação', max_length=30)-->
+<!--    link = models.CharField('Link', max_length=100)-->
+<!--    teachers_email = models.CharField('Email professores', max_length=100)-->
+<!--    course_email = models.CharField('Email turma', max_length=100)-->
+<!--    created_at = models.DateTimeField("Criada em")-->
+<!--    updated_at = models.DateTimeField("Última atualização")-->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

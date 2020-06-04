@@ -3,6 +3,7 @@ from django.contrib import admin
 from django.urls import path, include
 
 from core import urls as core_urls
+from courses import urls as courses_urls
 admin.autodiscover()
 
 #import hello.views
@@ -17,6 +18,7 @@ admin.autodiscover()
 
 urlpatterns = [
     path('', include((core_urls, 'core'), namespace='core')),
+    path('turmas/', include((courses_urls, 'courses'), namespace='courses')),
     path('accounts/', include('allauth.urls')),
     # path("", hello.views.index, name="index"),
     # path("db/", hello.views.db, name="db"),
