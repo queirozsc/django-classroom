@@ -1,4 +1,5 @@
 {% extends "base.html" %}
+{% load socialaccount %}
 
 {% block navbar %}
 <div class="navbar-end">
@@ -11,7 +12,7 @@
     <a href="#" class="navbar-item is-secondary modal-trigger" data-modal="auth-modal">
         Alunos
     </a>
-    <a class="navbar-item">
+    <a class="navbar-item" href="{% provider_login_url 'google' next='/' %}">
         <span class="button signup-button rounded secondary-btn raised">
             Acessar com &nbsp;<i class="fab fa-google"></i>
         </span>

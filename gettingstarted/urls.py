@@ -17,6 +17,7 @@ admin.autodiscover()
 
 urlpatterns = [
     path('', include((core_urls, 'core'), namespace='core')),
+    path('accounts/', include('allauth.urls')),
     # path("", hello.views.index, name="index"),
     # path("db/", hello.views.db, name="db"),
     path("admin/", admin.site.urls),
