@@ -3,7 +3,7 @@
 
 {% block navbar %}
 <div class="navbar-end">
-    <a href="{% url 'courses:list' %}" class="navbar-item is-secondary is-active">
+    <a href="{% url 'courses:list' %}" class="navbar-item is-secondary">
         Turmas
     </a>
     <a href="#" class="navbar-item is-secondary">
@@ -12,10 +12,15 @@
     <a href="#" class="navbar-item is-secondary modal-trigger" data-modal="auth-modal">
         Alunos
     </a>
-    <a class="navbar-item" href="{% provider_login_url 'google' next='/' %}">
-        <span class="button signup-button rounded secondary-btn raised">
-            Acessar com &nbsp;<i class="fab fa-google"></i>
-        </span>
-    </a>
+    {% if user.is_authenticated %}
+        <figure class="image is-128x128"><img src="{{ user.avatar }}" alt="Avatar" class="is-rounded"></figure>
+        {{ user.name }}
+    {% else %}
+        <a class="navbar-item" href="{% provider_login_url 'google' next='/' %}">
+            <span class="button signup-button rounded secondary-btn raised">
+                Acessar com &nbsp;<i class="fab fa-google"></i>
+            </span>
+        </a>
+    {% endif %}
 </div>
 {% endblock %}

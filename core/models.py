@@ -1,15 +1,27 @@
 import requests
-from allauth.account.signals import user_logged_in
+# from allauth.account.signals import user_logged_in
+from allauth.socialaccount.signals import social_account_updated
 from allauth.socialaccount.models import SocialToken
 from django.dispatch import receiver
+from accounts.models import User
 from courses.models import Course
 
 
-@receiver(user_logged_in)
-def retrieve_google_classroom_data(request, user, **kwargs):
-    """After login, retrieve Google Classroom data"""
+# @receiver(user_logged_in)
+@receiver(social_account_updated)
+def retrieve_google_classroom_data(request, sociallogin, **kwargs):
+# def retrieve_google_classroom_data(request, user, **kwargs):
+    """ After a user successfully authenticates via a social provider, but before the login is fully processed,
+    retrieve Google Classroom data"""
+    # updates user's extra data
+    user = User.objects.get(pk=request.user.id)
+    user.name = sociallogin.account.extra_data['name']
+    user.avatar = sociallogin.account.extra_data['picture']
+    user.save()
+
     # get the user's authorization token
-    token = SocialToken.objects.filter(account__user=user, account__provider='google')
+    token = SocialToken.objects.filter(account__user=request.user, account__provider='google')
+
     # save courses' data
     url = 'https://classroom.googleapis.com/v1/courses/'
     print(url)

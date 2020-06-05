@@ -44,6 +44,7 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "core",
     "courses",
+    "accounts",
 
     "allauth",
     "allauth.account",
@@ -165,7 +166,9 @@ STATICFILES_DIRS = (
 )
 
 ACCOUNT_LOGOUT_REDIRECT_URL ='/'
-LOGIN_REDIRECT_URL = '/'
+LOGIN_REDIRECT_URL = 'courses:index'
 SOCIALACCOUNT_FORMS = {}
+
+AUTH_USER_MODEL = 'accounts.User'
 
 django_heroku.settings(locals())
