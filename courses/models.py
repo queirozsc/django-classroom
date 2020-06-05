@@ -1,23 +1,13 @@
 import re
+from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-from django.shortcuts import get_object_or_404
-from accounts.models import User
-
-
-class CourseManager(models.Manager):
-    def search(self, user_id, course_name):
-        user = get_object_or_404(User, pk=user_id)
-        return self.get_queryset().filter(
-            teacher=user,
-            name__icontains=course_name
-        )
 
 
 class Course(models.Model):
     id = models.CharField(max_length=12, primary_key=True)
-    teacher = models.ForeignKey(User, on_delete=models.CASCADE)
+    teacher = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     name = models.CharField('Turma', max_length=100)
     section = models.CharField('Séries', max_length=100)
     state = models.CharField('Situação', max_length=30)
@@ -27,8 +17,6 @@ class Course(models.Model):
     created_at = models.DateTimeField("Criada em")
     updated_at = models.DateTimeField("Última atualização")
     mnemonic = models.CharField(max_length=4, null=True, blank=True)
-
-    objects = CourseManager()
 
     def __str__(self):
         return self.name
