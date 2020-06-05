@@ -4,7 +4,7 @@ from django.contrib.auth.models import (AbstractBaseUser, PermissionsMixin, User
 
 class User(AbstractBaseUser, PermissionsMixin):
 
-    username = models.CharField('Nome usuário', max_length=30)
+    username = models.CharField('Nome usuário', max_length=30, unique=True)
     email = models.EmailField('Email', unique=True)
     name = models.CharField('Nome completo', max_length=100, blank=True)
     avatar = models.CharField('Avatar', max_length=200, blank=True)
