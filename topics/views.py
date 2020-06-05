@@ -14,4 +14,6 @@ class TopicList(LoginRequiredMixin, ListView):
     def get_queryset(self):
         return super(TopicList, self).\
             get_queryset().\
-            filter(course__teacher=self.request.user)
+            filter(course__teacher=self.request.user).\
+            order_by('name', 'updated_at').\
+            distinct('name')
