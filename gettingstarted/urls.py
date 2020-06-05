@@ -1,12 +1,16 @@
+# Python imports
+# Django imports
 from django.conf import settings
 from django.contrib import admin
 from django.urls import path, include
-
 from core import urls as core_urls
+# Libraries imports
+# App imports
 from courses import urls as courses_urls
-admin.autodiscover()
+from topics import urls as topics_urls
 
-#import hello.views
+
+admin.autodiscover()
 
 # To add a new path, first import the app:
 # import blog
@@ -19,6 +23,7 @@ admin.autodiscover()
 urlpatterns = [
     path('', include((core_urls, 'core'), namespace='core')),
     path('turmas/', include((courses_urls, 'courses'), namespace='courses')),
+    path('disciplinas/', include((topics_urls, 'topics'), namespace='topics')),
     path('accounts/', include('allauth.urls')),
     # path("", hello.views.index, name="index"),
     # path("db/", hello.views.db, name="db"),

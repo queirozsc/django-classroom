@@ -49,8 +49,9 @@ INSTALLED_APPS = [
 
     "debug_toolbar",
     "core",
-    "courses",
     "accounts",
+    "courses",
+    "topics",
 
     "allauth",
     "allauth.account",
@@ -66,6 +67,7 @@ SOCIALACCOUNT_PROVIDERS = {
             'profile',
             'email',
             'https://www.googleapis.com/auth/classroom.courses.readonly',
+            'https://www.googleapis.com/auth/classroom.topics.readonly',
             'https://www.googleapis.com/auth/classroom.student-submissions.students.readonly',
             'https://www.googleapis.com/auth/classroom.profile.photos',
             'https://www.googleapis.com/auth/classroom.profile.emails',
