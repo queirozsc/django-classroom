@@ -3,7 +3,7 @@
 from django.contrib import admin
 # Libraries imports
 # App imports
-from .models import Topic
+from classroom.models.topic import Topic
 
 
 class TopicAdmin(admin.ModelAdmin):

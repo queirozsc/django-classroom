@@ -7,8 +7,8 @@ from allauth.socialaccount.signals import social_account_updated
 from allauth.socialaccount.models import SocialToken
 # App imports
 from accounts.models import User
-from courses.models import Course
-from topics.models import Topic
+from classroom.models.course import Course
+from classroom.models.topic import Topic
 
 
 # @receiver(user_logged_in)

@@ -1,9 +1,12 @@
+# Python imports
 import re
+# Django imports
 from django.conf import settings
 from django.db import models
 from django.db.models.signals import pre_save
 from django.dispatch import receiver
-
+# Libraries imports
+# App imports
 
 class Course(models.Model):
     id = models.CharField(max_length=12, primary_key=True)
@@ -31,7 +34,7 @@ class Course(models.Model):
         verbose_name_plural = 'Turmas'
         ordering = ['mnemonic', 'name']
 
-@receiver(pre_save, sender="courses.Course")
+@receiver(pre_save, sender="classroom.Course")
 def generate_mnemonic(sender, instance, **kwargs):
     """
     Extracts mnemonic from course's name

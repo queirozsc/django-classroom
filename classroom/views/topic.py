@@ -4,7 +4,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import ListView
 # Libraries imports
 # App imports
-from topics.models import Topic
+from classroom.models.topic import Topic
 
 
 class TopicList(LoginRequiredMixin, ListView):

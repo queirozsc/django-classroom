@@ -1,5 +1,9 @@
+# Python imports
+# Django imports
 from django.db import models
-from courses.models import Course
+# Libraries imports
+# App imports
+from classroom.models.course import Course
 
 
 class Topic(models.Model):

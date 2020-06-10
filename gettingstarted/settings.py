@@ -50,8 +50,9 @@ INSTALLED_APPS = [
     "debug_toolbar",
     "core",
     "accounts",
-    "courses",
-    "topics",
+    "classroom",
+    # "courses",
+    # "topics",
 
     "allauth",
     "allauth.account",
